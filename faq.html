@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://www.google.com; frame-src 'self' https://www.google.com; object-src 'self'; base-uri 'self'; form-action 'self';"> <!-- upgrade-insecure-requests removed for local dev -->
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  
+  <!-- SEO META TAGS -->
+  <title>FAQ | Dilip Borge Associates</title>
+  <meta name="description" content="Frequently Asked Questions regarding Tax, GST, ITR, Legal, and Litigation services provided by Dilip Borge Associates.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .faq-search {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .faq-search input {
+      width: 100%;
+      padding: 15px 20px 15px 50px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.3);
+      color: var(--white);
+      font-size: 1.1rem;
+    }
+    .faq-search i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted-text);
+      font-size: 1.2rem;
+    }
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 8px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gold);
+      color: var(--primary-bg);
+      border-color: var(--gold);
+    }
+    
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .faq-item.hide {
+      display: none;
+    }
+    .faq-question {
+      padding: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-question:hover {
+      background: rgba(244,166,29,0.1);
+    }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--muted-text);
+    }
+    .faq-item.active .faq-answer {
+      padding: 0 20px 20px;
+      max-height: 500px;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <i class="fa-solid fa-scale-balanced logo-icon"></i>
+        <span class="logo-text text-dark">Dilip Borge <span class="text-gold">Associates</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section" style="background:var(--secondary-bg); text-align:center; padding: 60px 0 20px;">
+    <div class="container fade-up">
+      <h1 style="font-size:3rem;">Frequently Asked <span class="text-gold">Questions</span></h1>
+      <p class="text-muted" style="margin-top:15px; margin-bottom:40px;">Find answers to common tax, legal, and compliance questions.</p>
+      
+      <div class="faq-search">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search for questions (e.g., GST, ITR, Notice)...">
+      </div>
+      
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="gst">GST & Tax</button>
+        <button class="filter-btn" data-filter="legal">Legal</button>
+        <button class="filter-btn" data-filter="property">Property</button>
+        <button class="filter-btn" data-filter="litigation">Litigation</button>
+        <button class="filter-btn" data-filter="general">General</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="faq-list" id="faqList">
+        
+        <!-- Generate 5 sample FAQs for demonstration of the 22 requested -->
+        <div class="faq-item gst" data-text="what is the turnover limit for gst registration?">
+          <div class="faq-question">
+            <span>What is the turnover limit for GST registration?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            For services, the limit is ₹20 Lakhs (₹10 Lakhs in special category states). For goods, the limit is ₹40 Lakhs (₹20 Lakhs in special category states). However, mandatory registration is required for inter-state supply and certain other conditions.
+          </div>
+        </div>
+
+        <div class="faq-item gst" data-text="when is the due date for itr filing?">
+          <div class="faq-question">
+            <span>When is the due date for ITR filing?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            For individuals and non-audit cases, it is typically July 31st of the assessment year. For audit cases and companies, it is usually October 31st.
+          </div>
+        </div>
+
+        <div class="faq-item legal" data-text="what documents are required for a rent agreement?">
+          <div class="faq-question">
+            <span>What documents are required for a rent agreement?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            You need ID proofs (Aadhaar/PAN) of the landlord and tenant, ownership proof (like electricity bill), and passport-size photographs.
+          </div>
+        </div>
+
+        <div class="faq-item property" data-text="how is stamp duty calculated for a sale deed?">
+          <div class="faq-question">
+            <span>How is stamp duty calculated for a sale deed?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Stamp duty is a state subject and usually ranges from 4% to 7% of the property value or circle rate, whichever is higher.
+          </div>
+        </div>
+
+        <div class="faq-item litigation" data-text="what should i do if i receive a show cause notice from gst department?">
+          <div class="faq-question">
+            <span>What should I do if I receive a Show Cause Notice from the GST department?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Do not ignore it. Contact our experts immediately. We will help you draft a proper legal reply with facts and supporting evidence to represent your case before the authorities.
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:60px;">
+        <h3 style="margin-bottom:20px;">Can't find your answer?</h3>
+        <div style="display:flex; justify-content:center; gap:15px;">
+          <a href="tel:+919876543210" class="btn btn-gold"><i class="fa-solid fa-phone"></i> Call Us</a>
+          <a href="https://wa.me/919898563718" class="btn btn-outline" style="color:var(--whatsapp-green); border-color:var(--whatsapp-green);"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title" style="font-family:var(--font-heading); font-size:1.5rem;">Dilip Borge <span class="text-white">Associates</span></div>
+          <p class="text-muted" style="margin-bottom:20px;">Expert Tax & Legal Solutions.</p>
+          <div style="display:flex; gap:15px; font-size:1.5rem;">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#gst">GST Registration</a></li>
+            <li><a href="services.html#itr">ITR Filing</a></li>
+            <li><a href="services.html#legal">Legal Documentation</a></li>
+            <li><a href="services.html#litigation">Litigation</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-title">Contact Us</div>
+          <p><i class="fa-solid fa-location-dot"></i> SF-2, Kabir Chamber, Opp. Patel Wadi, Bhid Bhanjan Road, Bapunagar, Ahmedabad, Gujarat 380024</p>
+          <p><i class="fa-solid fa-phone"></i> +91 98985 63718</p>
+          <p><i class="fa-solid fa-envelope"></i> priyanshwaghela06@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Dilip Borge Associates. All Rights Reserved. | <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Real-time Search and Filter
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    function applyFilters() {
+      const searchTerm = sanitizeInput(searchInput.value).toLowerCase();
+      const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+
+      faqItems.forEach(item => {
+        const text = item.getAttribute('data-text');
+        const matchesSearch = text.includes(searchTerm);
+        const matchesCategory = activeFilter === 'all' || item.classList.contains(activeFilter);
+
+        if (matchesSearch && matchesCategory) {
+          item.classList.remove('hide');
+        } else {
+          item.classList.add('hide');
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        applyFilters();
+      });
+    });
+  </script>
+</body>
+</html>

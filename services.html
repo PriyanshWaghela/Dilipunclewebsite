@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com https://fonts.googleapis.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data: https:;
+    connect-src 'self' https://api.emailjs.com https://www.google.com;
+    frame-src 'self' https://www.google.com;
+    object-src 'self';
+    base-uri 'self';
+    form-action 'self';">
+    <!-- upgrade-insecure-requests temporarily removed for local testing -->
+  
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  
+  <!-- SEO META TAGS -->
+  <title>Our Services | Dilip Borge Associates</title>
+  <meta name="description" content="Explore our comprehensive range of services including GST, ITR, Legal Documentation, Notary Services, and Litigation. Dilip Borge Associates.">
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* Filter Bar */
+    .filter-bar {
+      position: sticky;
+      top: 80px;
+      z-index: 900;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.2);
+      color: var(--text-primary);
+      padding: 8px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px 0;
+    }
+    .service-card {
+      transition: all 0.4s ease;
+    }
+    .service-card.hide {
+      display: none;
+    }
+    .badge-business { background: rgba(244,166,29,0.1); color: var(--gold); }
+    .badge-legal { background: rgba(0,212,255,0.1); color: var(--cyan); }
+    .badge-notary { background: rgba(255,255,255,0.1); color: var(--white); }
+    .badge-litigation { background: rgba(37,211,102,0.1); color: var(--whatsapp-green); }
+    .service-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    .service-bullets {
+      margin: 15px 0 20px 20px;
+      font-size: 0.9rem;
+      color: var(--muted-text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (Same as index) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <i class="fa-solid fa-scale-balanced logo-icon"></i>
+        <span class="logo-text text-dark">Dilip Borge <span class="text-gold">Associates</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-gold">Free Consultation</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="section" style="background:var(--primary-bg); padding: 80px 0 40px; text-align:center;">
+    <div class="container fade-up">
+      <h1 style="font-size:3.5rem;">Our <span class="text-gold">Services</span></h1>
+      <p class="text-muted" style="margin-top:15px;">Comprehensive solutions for all your Tax, Legal, and Litigation needs.</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Services</button>
+    <button class="filter-btn" data-filter="business">Business & Compliance</button>
+    <button class="filter-btn" data-filter="legal">Legal Documentation</button>
+    <button class="filter-btn" data-filter="notary">Notary Services</button>
+    <button class="filter-btn" data-filter="litigation">Litigation</button>
+  </div>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="services-grid" id="servicesGrid">
+        
+        <!-- Generate some sample cards to represent the 26 services -->
+        <!-- BUSINESS -->
+        <div class="glass-card service-card business" id="gst">
+          <span class="service-badge badge-business">Business</span>
+          <h3><i class="fa-solid fa-file-invoice text-gold"></i> GST Registration</h3>
+          <ul class="service-bullets">
+            <li>New Registration</li>
+            <li>Amendment of Reg.</li>
+            <li>Cancellation</li>
+            <li>Revocation</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="GST Registration">Enquire Now</a>
+        </div>
+        
+        <div class="glass-card service-card business">
+          <span class="service-badge badge-business">Business</span>
+          <h3><i class="fa-solid fa-chart-line text-gold"></i> ITR Filing</h3>
+          <ul class="service-bullets">
+            <li>Individual & HUF</li>
+            <li>Business & Profession</li>
+            <li>Capital Gains</li>
+            <li>Tax Planning</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Income Tax Filing (ITR)">Enquire Now</a>
+        </div>
+
+        <div class="glass-card service-card business">
+          <span class="service-badge badge-business">Business</span>
+          <h3><i class="fa-solid fa-industry text-gold"></i> MSME Registration</h3>
+          <ul class="service-bullets">
+            <li>Udyam Certificate</li>
+            <li>Govt Schemes Aid</li>
+            <li>Modifications</li>
+            <li>Priority lending support</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="MSME Registration">Enquire Now</a>
+        </div>
+
+        <!-- LEGAL -->
+        <div class="glass-card service-card legal" id="agreements">
+          <span class="service-badge badge-legal">Legal</span>
+          <h3><i class="fa-solid fa-file-contract text-cyan"></i> Agreements</h3>
+          <ul class="service-bullets">
+            <li>Partnership Deeds</li>
+            <li>Vendor Contracts</li>
+            <li>NDA & Employment</li>
+            <li>Service Agreements</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Agreements & Contracts">Enquire Now</a>
+        </div>
+
+        <div class="glass-card service-card legal" id="rent">
+          <span class="service-badge badge-legal">Legal</span>
+          <h3><i class="fa-solid fa-house text-cyan"></i> Rent Agreement</h3>
+          <ul class="service-bullets">
+            <li>Residential</li>
+            <li>Commercial</li>
+            <li>Leave & License</li>
+            <li>Police Verification</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Rent Agreements">Enquire Now</a>
+        </div>
+
+        <div class="glass-card service-card legal" id="deeds">
+          <span class="service-badge badge-legal">Legal</span>
+          <h3><i class="fa-solid fa-scroll text-cyan"></i> Sale Deed</h3>
+          <ul class="service-bullets">
+            <li>Drafting</li>
+            <li>Stamp Duty Calculation</li>
+            <li>Registrar Office Support</li>
+            <li>Property Transfer</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Registered Sale Deed">Enquire Now</a>
+        </div>
+
+        <!-- NOTARY -->
+        <div class="glass-card service-card notary">
+          <span class="service-badge badge-notary">Notary</span>
+          <h3><i class="fa-solid fa-stamp text-white"></i> Urgent Notary</h3>
+          <ul class="service-bullets">
+            <li>Same-day service</li>
+            <li>Affidavits</li>
+            <li>True Copies</li>
+            <li>Declarations</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Urgent Notarization">Enquire Now</a>
+        </div>
+
+        <!-- LITIGATION -->
+        <div class="glass-card service-card litigation" id="gst-notice">
+          <span class="service-badge badge-litigation">Litigation</span>
+          <h3><i class="fa-solid fa-gavel" style="color:var(--whatsapp-green);"></i> GST Notices</h3>
+          <ul class="service-bullets">
+            <li>Show Cause Notices</li>
+            <li>Demand & Recovery</li>
+            <li>Appeals</li>
+            <li>Tribunal Representation</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="GST Notices">Enquire Now</a>
+        </div>
+
+        <div class="glass-card service-card litigation">
+          <span class="service-badge badge-litigation">Litigation</span>
+          <h3><i class="fa-solid fa-scale-balanced" style="color:var(--whatsapp-green);"></i> Civil Matters</h3>
+          <ul class="service-bullets">
+            <li>Property Disputes</li>
+            <li>Injunctions</li>
+            <li>Breach of Contract</li>
+            <li>Recovery Suits</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Civil Matters">Enquire Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry Modal with SECURE form -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h3 style="margin-bottom:20px;">Enquire Now</h3>
+      
+      <form>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Enquiry from Dilip Borge Associates Website!">
+            <input type="hidden" name="_next" value="http://localhost:8080/index.html?submitted=true">
+            <input type="hidden" name="_template" value="table">
+
+        <!-- Honeypot -->
+        <div style="position:absolute;left:-9999px;" aria-hidden="true">
+          <label for="website_url">Website URL (Leave empty)</label>
+          <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+        </div>
+        
+        <input type="hidden" name="csrf_token" id="csrf_token">
+        <input type="hidden" name="form_start_time" id="form_start_time">
+        <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+        
+        <div class="form-group">
+          <input type="text" name="name" class="form-control" required minlength="3" maxlength="50" pattern="[a-zA-Z\s.\-']{3,50}" placeholder="Full Name">
+          <span class="error-msg"></span>
+        </div>
+        
+        <div class="form-group">
+          <input type="tel" name="phone" class="form-control" required maxlength="15" pattern="[0-9+\s\-]{10,15}" placeholder="Phone Number">
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" class="form-control" maxlength="100" placeholder="Email (optional)">
+          <span class="error-msg"></span>
+        </div>
+        
+        <div class="form-group">
+          <select name="service" class="form-control" required>
+            <option value="">Select Service *</option>
+            <optgroup label="Business & Compliance">
+              <option value="GST Registration">GST Registration</option>
+              <option value="Income Tax Filing (ITR)">Income Tax Filing (ITR)</option>
+              <option value="MSME Registration">MSME Registration</option>
+            </optgroup>
+            <optgroup label="Legal Documentation">
+              <option value="Agreements & Contracts">Agreements & Contracts</option>
+              <option value="Rent Agreements">Rent Agreements</option>
+              <option value="Registered Sale Deed">Registered Sale Deed</option>
+            </optgroup>
+            <optgroup label="Notary Services">
+              <option value="Urgent Notarization">Urgent Notarization</option>
+            </optgroup>
+            <optgroup label="Litigation">
+              <option value="GST Notices">GST Notices</option>
+              <option value="Civil Matters">Civil Matters</option>
+            </optgroup>
+          </select>
+          <span class="error-msg"></span>
+        </div>
+        
+        <div class="form-group">
+          <textarea name="message" class="form-control" maxlength="1000" placeholder="Your requirement..."></textarea>
+          <span class="error-msg"></span>
+        </div>
+
+        <p class="recaptcha-notice">
+          This site is protected by reCAPTCHA and the Google 
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and 
+          <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
+
+        <button type="submit" class="btn btn-gold" style="width:100%;">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer (Same as index) -->
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title" style="font-family:var(--font-heading); font-size:1.5rem;">Dilip Borge <span class="text-white">Associates</span></div>
+          <p class="text-muted" style="margin-bottom:20px;">Expert Tax & Legal Solutions.</p>
+          <div style="display:flex; gap:15px; font-size:1.5rem;">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#gst">GST Registration</a></li>
+            <li><a href="services.html#itr">ITR Filing</a></li>
+            <li><a href="services.html#legal">Legal Documentation</a></li>
+            <li><a href="services.html#litigation">Litigation</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-title">Contact Us</div>
+          <p><i class="fa-solid fa-location-dot"></i> SF-2, Kabir Chamber, Opp. Patel Wadi, Bhid Bhanjan Road, Bapunagar, Ahmedabad, Gujarat 380024</p>
+          <p><i class="fa-solid fa-phone"></i> +91 98985 63718</p>
+          <p><i class="fa-solid fa-envelope"></i> priyanshwaghela06@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Dilip Borge Associates. All Rights Reserved. | <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <!-- reCAPTCHA v3 script -->
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+  <!-- EmailJS script -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      // emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+
+    // Filter Logic
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        const filter = e.target.getAttribute('data-filter');
+        
+        document.querySelectorAll('.service-card').forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('hide');
+          } else {
+            if (card.classList.contains(filter)) {
+              card.classList.remove('hide');
+            } else {
+              card.classList.add('hide');
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

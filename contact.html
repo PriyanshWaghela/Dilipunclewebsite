@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://www.google.com; frame-src 'self' https://www.google.com; object-src 'self'; base-uri 'self'; form-action 'self';"> <!-- upgrade-insecure-requests removed for local dev -->
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  
+  <!-- SEO META TAGS -->
+  <title>Contact Us | Dilip Borge Associates</title>
+  <meta name="description" content="Get in touch with Dilip Borge Associates for your free tax and legal consultation. Secure contact form and direct WhatsApp links available.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .info-card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: 0.3s;
+    }
+    .info-card:hover {
+      background: rgba(244,166,29,0.1);
+      transform: translateX(10px);
+    }
+    .info-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      width: 50px;
+      text-align: center;
+    }
+    .emergency-card {
+      background: rgba(255,71,87,0.1);
+      border: 1px solid rgba(255,71,87,0.3);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <i class="fa-solid fa-scale-balanced logo-icon"></i>
+        <span class="logo-text text-dark">Dilip Borge <span class="text-gold">Associates</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="section" style="background:var(--secondary-bg); text-align:center;">
+    <div class="container fade-up">
+      <h1 style="font-size:3.5rem;">Get In Touch — <span class="text-gold">First Consultation FREE</span></h1>
+      <p class="text-muted" style="margin-top:15px; font-size:1.2rem;">Secure, confidential, and quick response.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- Left Column: Info Cards -->
+        <div class="fade-up stagger-1">
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <h4 class="text-muted">Phone / WhatsApp</h4>
+              <p style="font-size:1.2rem; font-weight:600;">+91 98985 63718</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <h4 class="text-muted">Email</h4>
+              <p style="font-size:1.2rem; font-weight:600;">priyanshwaghela06@gmail.com</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h4 class="text-muted">Office Address</h4>
+              <p style="font-size:1.2rem; font-weight:600;">SF-2, Kabir Chamber, Opp. Patel Wadi, Bhid Bhanjan Road, Bapunagar, Ahmedabad, Gujarat 380024</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <h4 class="text-muted">Working Hours</h4>
+              <p style="font-size:1.2rem; font-weight:600;">Mon - Sat, 9:00 AM - 7:00 PM</p>
+            </div>
+          </div>
+
+          <div class="emergency-card">
+            <h3 style="color:var(--alert-red); margin-bottom:10px;"><i class="fa-solid fa-truck-medical"></i> Need Urgent Help?</h3>
+            <p class="text-muted" style="margin-bottom:20px;">For immediate legal assistance or urgent notary, call us directly.</p>
+            <a href="tel:+919876543210" class="btn" style="background:var(--alert-red); color:white; width:100%;"><i class="fa-solid fa-phone"></i> CALL NOW</a>
+          </div>
+        </div>
+
+        <!-- Right Column: SECURE CONTACT FORM -->
+        <div class="glass-card fade-up stagger-2" style="border-top: 4px solid var(--gold);">
+          <h3 style="margin-bottom:30px;">Send a Secure Message</h3>
+          
+          <form>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Enquiry from Dilip Borge Associates Website!">
+            <input type="hidden" name="_next" value="http://localhost:8080/index.html?submitted=true">
+            <input type="hidden" name="_template" value="table">
+
+            
+            <!-- Honeypot -->
+            <div style="position:absolute;left:-9999px;" aria-hidden="true">
+              <label for="website_url">Website URL (Leave empty)</label>
+              <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+            </div>
+            
+            <!-- CSRF Token -->
+            <input type="hidden" name="csrf_token" id="csrf_token">
+            
+            <!-- Form start time (honeypot) -->
+            <input type="hidden" name="form_start_time" id="form_start_time">
+            
+            <!-- reCAPTCHA token -->
+            <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+            
+            <!-- Real fields -->
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" required minlength="3" maxlength="50" pattern="[a-zA-Z\s.\-']{3,50}" placeholder="Full Name">
+              <span class="error-msg"></span>
+            </div>
+            
+            <div class="form-group">
+              <input type="tel" name="phone" class="form-control" required maxlength="15" pattern="[0-9+\s\-]{10,15}" placeholder="Phone Number">
+              <span class="error-msg"></span>
+            </div>
+            
+            <div class="form-group">
+              <input type="email" name="email" class="form-control" maxlength="100" placeholder="Email (optional)">
+              <span class="error-msg"></span>
+            </div>
+            
+            <div class="form-group">
+              <select name="service" class="form-control" required>
+                <option value="">Select Service *</option>
+                <optgroup label="Business & Compliance">
+                  <option>GST Registration</option>
+                  <option>GST Return Filing</option>
+                  <option>Income Tax Filing (ITR)</option>
+                  <option>TDS Returns</option>
+                  <option>MSME Registration</option>
+                  <option>Company/LLP Compliance</option>
+                  <option>Trademark Coordination</option>
+                  <option>Audit</option>
+                </optgroup>
+                <optgroup label="Legal Documentation">
+                  <option>Agreements & Contracts</option>
+                  <option>Affidavits</option>
+                  <option>Rent Agreements</option>
+                  <option>Legal Notices</option>
+                  <option>Power of Attorney</option>
+                  <option>Registered Sale Deed</option>
+                  <option>Gift/Adoption/Will/Trust Deed</option>
+                  <option>Property Documentation</option>
+                  <option>Marriage Registration</option>
+                </optgroup>
+                <optgroup label="Notary Services">
+                  <option>Urgent Notarization</option>
+                  <option>Document Authentication</option>
+                  <option>Business Agreement Notarization</option>
+                </optgroup>
+                <optgroup label="Litigation">
+                  <option>GST Notices</option>
+                  <option>Income Tax Scrutiny</option>
+                  <option>Civil Matters</option>
+                  <option>Criminal Matters</option>
+                  <option>Family Matters</option>
+                  <option>Recovery (Section 138 NI Act)</option>
+                  <option>Mortgage Deed</option>
+                </optgroup>
+                <option>Other</option>
+              </select>
+              <span class="error-msg"></span>
+            </div>
+            
+            <!-- Contact method -->
+            <div class="form-group">
+              <label style="color:var(--muted-text); display:block; margin-bottom:10px;">Preferred Contact Method:</label>
+              <div class="radio-group">
+                <label><input type="radio" name="contact_method" value="Phone" checked> Phone</label>
+                <label><input type="radio" name="contact_method" value="WhatsApp"> WhatsApp</label>
+                <label><input type="radio" name="contact_method" value="Email"> Email</label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <select name="source" class="form-control">
+                <option value="">How did you hear about us?</option>
+                <option>Google Search</option>
+                <option>Social Media</option>
+                <option>Friend/Referral</option>
+                <option>Walk-in</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <textarea name="message" class="form-control" maxlength="1000" placeholder="Your requirement..."></textarea>
+              <span class="error-msg"></span>
+            </div>
+            
+            <!-- Privacy consent -->
+            <div class="checkbox-group">
+              <input type="checkbox" id="privacy_consent" name="privacy_consent" required>
+              <label for="privacy_consent">I agree to the Privacy Policy and consent to being contacted by Dilip Borge Associates.</label>
+            </div>
+            
+            <!-- reCAPTCHA notice -->
+            <p class="recaptcha-notice">
+              This site is protected by reCAPTCHA and the Google 
+              <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
+              <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+            </p>
+            
+            <button type="submit" class="btn btn-gold" style="width:100%;">
+              Send Message for Free Consultation
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title" style="font-family:var(--font-heading); font-size:1.5rem;">Dilip Borge <span class="text-white">Associates</span></div>
+          <p class="text-muted" style="margin-bottom:20px;">Expert Tax & Legal Solutions.</p>
+          <div style="display:flex; gap:15px; font-size:1.5rem;">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#gst">GST Registration</a></li>
+            <li><a href="services.html#itr">ITR Filing</a></li>
+            <li><a href="services.html#legal">Legal Documentation</a></li>
+            <li><a href="services.html#litigation">Litigation</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-title">Contact Us</div>
+          <p><i class="fa-solid fa-location-dot"></i> SF-2, Kabir Chamber, Opp. Patel Wadi, Bhid Bhanjan Road, Bapunagar, Ahmedabad, Gujarat 380024</p>
+          <p><i class="fa-solid fa-phone"></i> +91 98985 63718</p>
+          <p><i class="fa-solid fa-envelope"></i> priyanshwaghela06@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Dilip Borge Associates. All Rights Reserved. | <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <!-- EmailJS script -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      // emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+  </script>
+  
+  <!-- reCAPTCHA v3 script -->
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+  <!--
+    RECAPTCHA SETUP INSTRUCTIONS:
+    1. Go to: https://www.google.com/recaptcha/admin
+    2. Sign in with Google account
+    3. Click "+" to add new site
+    4. Label: Dilip Borge Associates
+    5. reCAPTCHA type: reCAPTCHA v3
+    6. Domains: dilipborgeassociates.com, www.dilipborgeassociates.com
+    7. Accept terms -> Submit
+    8. Copy the SITE KEY
+    9. Replace YOUR_RECAPTCHA_SITE_KEY in this file
+    10. The SECRET KEY is used server-side (not needed here)
+  -->
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://www.google.com; frame-src 'self' https://www.google.com; object-src 'self'; base-uri 'self'; form-action 'self';"> <!-- upgrade-insecure-requests removed for local dev -->
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  
+  <!-- SEO META TAGS -->
+  <title>Blog | Tax & Legal Insights by Dilip Borge Associates</title>
+  <meta name="description" content="Stay updated with the latest news, changes, and expert insights on GST, Income Tax, and Legal procedures in India.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 992px) {
+      .blog-layout { grid-template-columns: 1fr; }
+    }
+    
+    .blog-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      transition: 0.3s;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border-color: rgba(244,166,29,0.3);
+    }
+    .blog-image {
+      width: 100%;
+      height: 200px;
+      background: #2a3b52;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-text);
+      font-size: 3rem;
+    }
+    .featured-blog .blog-image {
+      height: 350px;
+    }
+    .blog-content {
+      padding: 25px;
+    }
+    .blog-meta {
+      font-size: 0.85rem;
+      color: var(--muted-text);
+      margin-bottom: 10px;
+      display: flex;
+      gap: 15px;
+    }
+    .blog-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+    .featured-blog .blog-title {
+      font-size: 2rem;
+    }
+    
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Sidebar */
+    .sidebar-widget {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    .sidebar-title {
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px;
+    }
+    .category-list {
+      list-style: none;
+    }
+    .category-list li {
+      margin-bottom: 10px;
+    }
+    .category-list a {
+      color: var(--muted-text);
+      display: flex;
+      justify-content: space-between;
+    }
+    .category-list a:hover {
+      color: var(--cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <i class="fa-solid fa-scale-balanced logo-icon"></i>
+        <span class="logo-text text-dark">Dilip Borge <span class="text-gold">Associates</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section" style="background:var(--secondary-bg); text-align:center; padding: 60px 0 30px;">
+    <div class="container fade-up">
+      <h1 style="font-size:3rem;">Tax & Legal <span class="text-gold">Insights</span></h1>
+      <p class="text-muted" style="margin-top:15px;">Stay updated with the latest changes and expert advice.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:40px;">
+    <div class="container blog-layout">
+      
+      <!-- Main Content -->
+      <div>
+        <!-- Featured Post -->
+        <div class="blog-card featured-blog fade-up">
+          <div class="blog-image">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-solid fa-calendar"></i> Oct 15, 2026</span>
+              <span><i class="fa-solid fa-folder"></i> Income Tax</span>
+            </div>
+            <h2 class="blog-title">Everything You Need to Know About the New ITR Forms for AY 2026-27</h2>
+            <p class="text-muted" style="margin-bottom:20px;">The CBDT has notified new ITR forms with significant changes regarding crypto assets, foreign income, and new tax regime defaults. Here is a comprehensive guide...</p>
+            <a href="#" class="btn btn-outline" style="font-size:0.9rem; padding: 8px 20px;">Read More</a>
+          </div>
+        </div>
+
+        <!-- 6 Blog Posts Grid -->
+        <div class="blog-grid fade-up stagger-1">
+          <!-- Post 1 -->
+          <div class="blog-card">
+            <div class="blog-image"><i class="fa-solid fa-building"></i></div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>Oct 10, 2026</span> | <span>GST</span>
+              </div>
+              <h3 class="blog-title" style="font-size:1.2rem;">How to Reply to a GST Show Cause Notice (SCN)</h3>
+              <p class="text-muted" style="font-size:0.9rem; margin-bottom:15px;">Receiving an SCN can be daunting. Learn the step-by-step legal procedure to draft a strong reply...</p>
+              <a href="#" style="color:var(--gold); font-size:0.9rem; font-weight:600;">Read Article &rarr;</a>
+            </div>
+          </div>
+          <!-- Post 2 -->
+          <div class="blog-card">
+            <div class="blog-image"><i class="fa-solid fa-scroll"></i></div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>Oct 05, 2026</span> | <span>Property Law</span>
+              </div>
+              <h3 class="blog-title" style="font-size:1.2rem;">Essential Clauses Every Sale Deed Must Have</h3>
+              <p class="text-muted" style="font-size:0.9rem; margin-bottom:15px;">Protect yourself from future property disputes by ensuring your Sale Deed includes these 5 crucial clauses...</p>
+              <a href="#" style="color:var(--gold); font-size:0.9rem; font-weight:600;">Read Article &rarr;</a>
+            </div>
+          </div>
+          <!-- Post 3 -->
+          <div class="blog-card">
+            <div class="blog-image"><i class="fa-solid fa-industry"></i></div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>Sep 28, 2026</span> | <span>MSME</span>
+              </div>
+              <h3 class="blog-title" style="font-size:1.2rem;">Top 10 Benefits of Udyam (MSME) Registration</h3>
+              <p class="text-muted" style="font-size:0.9rem; margin-bottom:15px;">From collateral-free loans to protection against delayed payments, why your business needs MSME registration...</p>
+              <a href="#" style="color:var(--gold); font-size:0.9rem; font-weight:600;">Read Article &rarr;</a>
+            </div>
+          </div>
+          <!-- Post 4 -->
+          <div class="blog-card">
+            <div class="blog-image"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>Sep 20, 2026</span> | <span>Legal</span>
+              </div>
+              <h3 class="blog-title" style="font-size:1.2rem;">Registered vs Notarized Rent Agreement</h3>
+              <p class="text-muted" style="font-size:0.9rem; margin-bottom:15px;">Understand the legal differences and why registering your rent agreement for 11+ months is mandatory...</p>
+              <a href="#" style="color:var(--gold); font-size:0.9rem; font-weight:600;">Read Article &rarr;</a>
+            </div>
+          </div>
+          <!-- Post 5 -->
+          <div class="blog-card">
+            <div class="blog-image"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>Sep 15, 2026</span> | <span>Litigation</span>
+              </div>
+              <h3 class="blog-title" style="font-size:1.2rem;">Understanding Section 138 of the NI Act</h3>
+              <p class="text-muted" style="font-size:0.9rem; margin-bottom:15px;">A complete guide to cheque bounce cases, sending legal notices, and the timeline for filing a complaint...</p>
+              <a href="#" style="color:var(--gold); font-size:0.9rem; font-weight:600;">Read Article &rarr;</a>
+            </div>
+          </div>
+          <!-- Post 6 -->
+          <div class="blog-card">
+            <div class="blog-image"><i class="fa-solid fa-trademark"></i></div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>Sep 01, 2026</span> | <span>Business</span>
+              </div>
+              <h3 class="blog-title" style="font-size:1.2rem;">Why You Should Trademark Your Brand Name Now</h3>
+              <p class="text-muted" style="font-size:0.9rem; margin-bottom:15px;">Protect your intellectual property from competitors. Here is the process for registering a trademark in India...</p>
+              <a href="#" style="color:var(--gold); font-size:0.9rem; font-weight:600;">Read Article &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="fade-up stagger-2">
+        <div class="sidebar-widget">
+          <h3 class="sidebar-title">Categories</h3>
+          <ul class="category-list">
+            <li><a href="#">GST & Tax <span>(12)</span></a></li>
+            <li><a href="#">Income Tax (ITR) <span>(8)</span></a></li>
+            <li><a href="#">Legal Documentation <span>(15)</span></a></li>
+            <li><a href="#">Business Compliance <span>(10)</span></a></li>
+            <li><a href="#">Litigation & Notices <span>(7)</span></a></li>
+            <li><a href="#">Property Law <span>(5)</span></a></li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-widget">
+          <h3 class="sidebar-title">Need Expert Advice?</h3>
+          <p class="text-muted" style="font-size:0.9rem; margin-bottom:20px;">Book a free 15-minute consultation with our tax and legal experts today.</p>
+          <a href="contact.html" class="btn btn-gold" style="width:100%; text-align:center; padding:10px;">Contact Us</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title" style="font-family:var(--font-heading); font-size:1.5rem;">Dilip Borge <span class="text-white">Associates</span></div>
+          <p class="text-muted" style="margin-bottom:20px;">Expert Tax & Legal Solutions.</p>
+          <div style="display:flex; gap:15px; font-size:1.5rem;">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#gst">GST Registration</a></li>
+            <li><a href="services.html#itr">ITR Filing</a></li>
+            <li><a href="services.html#legal">Legal Documentation</a></li>
+            <li><a href="services.html#litigation">Litigation</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-title">Contact Us</div>
+          <p><i class="fa-solid fa-location-dot"></i> SF-2, Kabir Chamber, Opp. Patel Wadi, Bhid Bhanjan Road, Bapunagar, Ahmedabad, Gujarat 380024</p>
+          <p><i class="fa-solid fa-phone"></i> +91 98985 63718</p>
+          <p><i class="fa-solid fa-envelope"></i> priyanshwaghela06@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Dilip Borge Associates. All Rights Reserved. | <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
