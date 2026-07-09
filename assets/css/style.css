@@ -735,3 +735,6 @@ textarea.form-control {
   /* Remove pure CSS hover transform as we will use VanillaTilt */
   transition: box-shadow 0.3s;
 }
+
+.logo-container img { transition: transform 0.3s ease; }
+.logo-container:hover img { transform: scale(1.05); }
