@@ -582,112 +582,28 @@ function validateField(input) {
 }
 
 
-// Intercept Form Submissions for AJAX, Netlify, and Success Animation
+// Form Submission Handling
 document.querySelectorAll('form').forEach(form => {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stop page from navigating
-    
+  form.addEventListener('submit', (e) => {
     const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-gold');
-    let originalText = "Send Message";
     if (submitBtn) {
-      originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.style.pointerEvents = 'none';
+      submitBtn.style.opacity = '0.7';
     }
-    
-    // Honeypot check
-    const honeypot = form.querySelector('[name="website_url"]') || form.querySelector('[name="bot-field"]');
-    if (honeypot && honeypot.value !== '') {
-      form.reset();
-      showSuccessAnimation();
-      if (submitBtn) { submitBtn.innerHTML = originalText; submitBtn.disabled = false; }
-      return;
-    }
-    
-    const formData = new FormData(form);
-    
-    try {
-      // 1. Netlify Forms submission (only when explicitly hosted on netlify)
-      if (window.location.hostname.includes('netlify.app')) {
-        try {
-          const formName = form.getAttribute('name') || 'contact';
-          if (!formData.has('form-name')) formData.append('form-name', formName);
-          const netlifyParams = new URLSearchParams(formData).toString();
-          fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: netlifyParams
-          }).catch(err => console.log("Netlify submit notice:", err));
-        } catch (e) {
-          console.warn("Netlify Forms capture:", e);
-        }
-      }
-
-      // 2. FormSubmit AJAX submission
-      const response = await fetch("https://formsubmit.co/ajax/dilipborge@yahoo.co.in", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: formData
-      });
-      
-      const result = await response.json().catch(() => ({}));
-      
-      // Close modal if open
-      const modal = form.closest('.modal-overlay');
-      if (modal) {
-        modal.classList.remove('active');
-      }
-      
-      form.reset();
-      
-      if (result && result.message && result.message.toLowerCase().includes('activation')) {
-        showActivationNotice();
-      } else {
-        showSuccessAnimation();
-      }
-      
-    } catch (error) {
-      console.error("Form error:", error);
-      form.reset();
-      showSuccessAnimation();
-    } finally {
-      if (submitBtn) {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }
-    }
+    // Allow native form submission to FormSubmit so all fields are delivered reliably!
   });
 });
 
-function showActivationNotice() {
-  const overlay = document.createElement('div');
-  overlay.style.cssText = `
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
-    z-index: 999999; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; padding: 20px;
-    opacity: 0; transition: opacity 0.5s ease;
-  `;
-  
-  overlay.innerHTML = `
-    <div style="background: var(--gold, #0A58CA); width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(10, 88, 202, 0.3);">
-      <i class="fa-solid fa-envelope-circle-check" style="color: white; font-size: 45px;"></i>
-    </div>
-    <h2 style="color: var(--text-primary, #1A2530); margin:0 0 15px; font-family: var(--font-heading), sans-serif; font-size: 2.2rem; text-align: center;">One-Time Activation Needed!</h2>
-    <p style="color: var(--text-primary); font-size: 1.1rem; text-align: center; max-width: 600px; line-height: 1.6; margin-bottom: 20px;">
-      FormSubmit has sent an <strong>"Activate Form"</strong> confirmation email to <strong>dilipborge@yahoo.co.in</strong>.
-    </p>
-    <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; max-width: 550px; background: rgba(0,0,0,0.04); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); margin-bottom: 25px;">
-      ⚠️ <em>Please check your <strong>Yahoo Inbox</strong> AND the <strong>Spam / Bulk</strong> folder, then click the <strong>Activate Form</strong> button. Once clicked, all future enquiries will be delivered instantly!</em>
-    </p>
-    <button onclick="this.closest('div').parentElement.remove()" class="btn btn-gold" style="padding: 12px 30px; font-weight: 600;">Got It, I'll Check Yahoo Mail</button>
-  `;
-  
-  document.body.appendChild(overlay);
-  requestAnimationFrame(() => overlay.style.opacity = '1');
-}
+// Detect return from FormSubmit submission
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.location.search.includes('submitted=true')) {
+    setTimeout(() => {
+      showSuccessAnimation();
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }, 400);
+  }
+});
 
 function showSuccessAnimation() {
   const overlay = document.createElement('div');
