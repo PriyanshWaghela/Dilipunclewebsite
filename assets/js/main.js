@@ -607,8 +607,8 @@ document.querySelectorAll('form').forEach(form => {
     const formData = new FormData(form);
     
     try {
-      // 1. Netlify Forms submission (runs seamlessly on production Netlify deployment)
-      if (window.location.protocol === 'https:' || window.location.hostname.includes('netlify.app')) {
+      // 1. Netlify Forms submission (only when explicitly hosted on netlify)
+      if (window.location.hostname.includes('netlify.app')) {
         try {
           const formName = form.getAttribute('name') || 'contact';
           if (!formData.has('form-name')) formData.append('form-name', formName);
