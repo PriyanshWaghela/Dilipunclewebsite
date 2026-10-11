@@ -332,7 +332,7 @@ async function handleContactFormSubmit(event) {
     formData.append('message', message);
     
     // Replace YOUR_EMAIL@DOMAIN.COM with your actual email
-    const response = await fetch('https://formsubmit.co/ajax/priyanshwaghela06@gmail.com', {
+    const response = await fetch('https://formsubmit.co/ajax/dilipborge@yahoo.co.in', {
       method: 'POST',
       body: formData,
       headers: {
@@ -352,7 +352,7 @@ async function handleContactFormSubmit(event) {
     
   } catch (error) {
     console.error('Form submission error:', error);
-    showToast('Failed to send. Please try WhatsApp or call +91 98765 43210', 'error');
+    showToast('Failed to send. Please try WhatsApp or call +91 98985 63718', 'error');
   }
 }
 
@@ -542,12 +542,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Attach submit handler to any contact forms
-  const contactForms = document.querySelectorAll('form[id^="contactForm"]');
-  contactForms.forEach(form => {
-    form.addEventListener('submit', handleContactFormSubmit);
-    
-    // Real-time validation
+  // Real-time validation
+  document.querySelectorAll('form').forEach(form => {
     const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
     inputs.forEach(input => {
       input.addEventListener('blur', () => {
@@ -599,32 +595,30 @@ document.querySelectorAll('form').forEach(form => {
       submitBtn.disabled = true;
     }
     
+    // Honeypot check
+    const honeypot = form.querySelector('[name="website_url"]');
+    if (honeypot && honeypot.value !== '') {
+      form.reset();
+      showSuccessAnimation();
+      if (submitBtn) { submitBtn.innerHTML = originalText; submitBtn.disabled = false; }
+      return;
+    }
+    
     const formData = new FormData(form);
     
     try {
-      // Web3Forms requires an Access Key to prevent spam.
-      // 1. Go to https://web3forms.com
-      // 2. Enter priyanshwaghela06@gmail.com to get your free key
-      // 3. Paste the key below!
-      formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
-      
-      // Send the data securely via Web3Forms API
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://formsubmit.co/ajax/dilipborge@yahoo.co.in", {
         method: "POST",
+        headers: {
+          'Accept': 'application/json'
+        },
         body: formData
       });
-      
-      const result = await response.json();
-      if (!response.ok || !result.success) {
-         console.error("Web3Forms Error:", result);
-         alert("Please enter your Web3Forms Access Key in assets/js/main.js!");
-         throw new Error("Invalid Access Key");
-      }
       
       form.reset();
       showSuccessAnimation();
       
-      // Close modal if it's open (e.g., Services page enquiry)
+      // Close modal if open
       const modal = form.closest('.modal-overlay');
       if (modal) {
         modal.classList.remove('active');
@@ -632,7 +626,7 @@ document.querySelectorAll('form').forEach(form => {
       
     } catch (error) {
       console.error("Form error:", error);
-      // Still show success to prevent user confusion if local testing CORS fails
+      // Show success animation so user isn't stuck on local testing restrictions
       form.reset();
       showSuccessAnimation();
     } finally {

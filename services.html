@@ -199,16 +199,40 @@
           <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Rent Agreements">Enquire Now</a>
         </div>
 
-        <div class="glass-card service-card legal" id="deeds">
+                <div class="glass-card service-card legal" id="deeds">
           <span class="service-badge badge-legal">Legal</span>
           <h3><i class="fa-solid fa-scroll text-cyan"></i> Sale Deed</h3>
           <ul class="service-bullets">
-            <li>Drafting</li>
-            <li>Stamp Duty Calculation</li>
-            <li>Registrar Office Support</li>
-            <li>Property Transfer</li>
+            <li>Title Verification & Search Report</li>
+            <li>Drafting of Sale & Conveyance Deeds</li>
+            <li>Stamp Duty & Registration Fee Calculation</li>
+            <li>Sub-Registrar Office Execution Support</li>
           </ul>
-          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Registered Sale Deed">Enquire Now</a>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Sale Deed">Enquire Now</a>
+        </div>
+
+        <div class="glass-card service-card legal" id="adopt-deed">
+          <span class="service-badge badge-legal">Legal</span>
+          <h3><i class="fa-solid fa-child-reaching text-cyan"></i> Adopt Deed</h3>
+          <ul class="service-bullets">
+            <li>Adoption Deed Drafting & Legal Formalities</li>
+            <li>HAMA & Juvenile Justice Act Compliance</li>
+            <li>Biological & Adoptive Parents Consents</li>
+            <li>Sub-Registrar Office Legal Registration</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Adopt Deed">Enquire Now</a>
+        </div>
+
+        <div class="glass-card service-card legal" id="mortgage-deed">
+          <span class="service-badge badge-legal">Legal</span>
+          <h3><i class="fa-solid fa-landmark text-cyan"></i> Mortgage Deed</h3>
+          <ul class="service-bullets">
+            <li>Simple, English & Usufructuary Mortgage</li>
+            <li>Equitable Mortgage by Title Deed Deposit</li>
+            <li>Property Title Search & Clearances</li>
+            <li>Stamp Duty Guidance & Sub-Registrar Filing</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Mortgage Deed">Enquire Now</a>
         </div>
 
         <!-- NOTARY -->
@@ -225,6 +249,18 @@
         </div>
 
         <!-- LITIGATION -->
+        <div class="glass-card service-card litigation" id="drt-work">
+          <span class="service-badge badge-litigation">Litigation</span>
+          <h3><i class="fa-solid fa-building-columns" style="color:var(--whatsapp-green);"></i> DRT Work</h3>
+          <ul class="service-bullets">
+            <li>Debts Recovery Tribunal (DRT & DRAT) Matters</li>
+            <li>SARFAESI Act Notice & Section 17 Applications</li>
+            <li>Bank Loan Settlement & Restructuring (OTS)</li>
+            <li>Securitization Defense & Stay Applications</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="DRT Work">Enquire Now</a>
+        </div>
+
         <div class="glass-card service-card litigation" id="gst-notice">
           <span class="service-badge badge-litigation">Litigation</span>
           <h3><i class="fa-solid fa-gavel" style="color:var(--whatsapp-green);"></i> GST Notices</h3>
@@ -248,8 +284,7 @@
           </ul>
           <a href="#" class="btn btn-outline" style="width:100%; text-align:center;" data-modal="enquiryModal" data-service="Civil Matters">Enquire Now</a>
         </div>
-
-      </div>
+        </div>
     </div>
   </section>
 
@@ -259,11 +294,10 @@
       <button class="modal-close">&times;</button>
       <h3 style="margin-bottom:20px;">Enquire Now</h3>
       
-      <form>
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New Enquiry from Dilip Borge Associates Website!">
-            <input type="hidden" name="_next" value="http://localhost:8080/index.html?submitted=true">
-            <input type="hidden" name="_template" value="table">
+      <form action="https://formsubmit.co/dilipborge@yahoo.co.in" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Service Enquiry - Dilip Borge Associates">
+        <input type="hidden" name="_template" value="table">
 
         <!-- Honeypot -->
         <div style="position:absolute;left:-9999px;" aria-hidden="true">
@@ -291,7 +325,7 @@
         </div>
         
         <div class="form-group">
-          <select name="service" class="form-control" required>
+                    <select name="service" class="form-control" required>
             <option value="">Select Service *</option>
             <optgroup label="Business & Compliance">
               <option value="GST Registration">GST Registration</option>
@@ -299,14 +333,17 @@
               <option value="MSME Registration">MSME Registration</option>
             </optgroup>
             <optgroup label="Legal Documentation">
+              <option value="Adopt Deed">Adopt Deed</option>
+              <option value="Sale Deed">Sale Deed</option>
+              <option value="Mortgage Deed">Mortgage Deed</option>
               <option value="Agreements & Contracts">Agreements & Contracts</option>
               <option value="Rent Agreements">Rent Agreements</option>
-              <option value="Registered Sale Deed">Registered Sale Deed</option>
             </optgroup>
             <optgroup label="Notary Services">
               <option value="Urgent Notarization">Urgent Notarization</option>
             </optgroup>
             <optgroup label="Litigation">
+              <option value="DRT Work">DRT Work</option>
               <option value="GST Notices">GST Notices</option>
               <option value="Civil Matters">Civil Matters</option>
             </optgroup>
@@ -365,7 +402,7 @@
           <div class="footer-title">Contact Us</div>
           <p><i class="fa-solid fa-location-dot"></i> SF-2, Kabir Chamber, Opp. Patel Wadi, Bhid Bhanjan Road, Bapunagar, Ahmedabad, Gujarat 380024</p>
           <p><i class="fa-solid fa-phone"></i> +91 98985 63718</p>
-          <p><i class="fa-solid fa-envelope"></i> priyanshwaghela06@gmail.com</p>
+          <p><i class="fa-solid fa-envelope"></i> dilipborge@yahoo.co.in</p>
         </div>
       </div>
       <div class="footer-bottom">
