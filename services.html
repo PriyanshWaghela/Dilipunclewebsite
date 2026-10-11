@@ -294,7 +294,9 @@
       <button class="modal-close">&times;</button>
       <h3 style="margin-bottom:20px;">Enquire Now</h3>
       
-      <form action="https://formsubmit.co/dilipborge@yahoo.co.in" method="POST">
+      <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="https://formsubmit.co/dilipborge@yahoo.co.in">
+        <input type="hidden" name="form-name" value="enquiry">
+        <div style="display:none;" aria-hidden="true"><input name="bot-field"></div>
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_subject" value="New Service Enquiry - Dilip Borge Associates">
         <input type="hidden" name="_template" value="table">

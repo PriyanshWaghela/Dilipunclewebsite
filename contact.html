@@ -132,7 +132,9 @@
         <div class="glass-card fade-up stagger-2" style="border-top: 4px solid var(--gold);">
           <h3 style="margin-bottom:30px;">Send a Secure Message</h3>
           
-          <form action="https://formsubmit.co/dilipborge@yahoo.co.in" method="POST">
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="https://formsubmit.co/dilipborge@yahoo.co.in">
+            <input type="hidden" name="form-name" value="contact">
+            <div style="display:none;" aria-hidden="true"><input name="bot-field"></div>
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="New Contact Message - Dilip Borge Associates">
             <input type="hidden" name="_template" value="table">
