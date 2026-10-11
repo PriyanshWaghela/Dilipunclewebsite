@@ -582,58 +582,89 @@ function validateField(input) {
 }
 
 
-// Form Submission Handling
+// WhatsApp Form Submission Handling (Direct, Instant Delivery to +91 98985 63718)
+const DBA_WHATSAPP_NUMBER = "919898563718";
+
 document.querySelectorAll('form').forEach(form => {
   form.addEventListener('submit', (e) => {
-    const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-gold');
-    if (submitBtn) {
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
-      submitBtn.style.pointerEvents = 'none';
-      submitBtn.style.opacity = '0.7';
+    e.preventDefault(); // Stop page reload
+    
+    // Extract form fields
+    const fullName = form.querySelector('[name="Full Name"]')?.value || form.querySelector('[name="name"]')?.value || 'Client';
+    const phone = form.querySelector('[name="Phone Number"]')?.value || form.querySelector('[name="phone"]')?.value || '';
+    const email = form.querySelector('[name="Email Address"]')?.value || form.querySelector('[name="email"]')?.value || '';
+    const service = form.querySelector('[name="Selected Service"]')?.value || form.querySelector('[name="service"]')?.value || 'General Consultation';
+    const requirement = form.querySelector('[name="Client Requirement"]')?.value || form.querySelector('[name="Requirement Details"]')?.value || form.querySelector('[name="message"]')?.value || '';
+    const contactMethod = form.querySelector('[name="contact_method"]:checked')?.value || 'WhatsApp';
+    
+    // Construct clean, formatted WhatsApp message
+    let text = `*New Consultation Enquiry - Dilip Borge Associates*\n`;
+    text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `👤 *Client Name:* ${fullName}\n`;
+    text += `📞 *Phone Number:* ${phone}\n`;
+    if (email && email.trim() !== '') {
+      text += `📧 *Email Address:* ${email}\n`;
     }
-    // Allow native form submission to FormSubmit so all fields are delivered reliably!
+    text += `⚖️ *Selected Service:* ${service}\n`;
+    text += `💬 *Preferred Contact:* ${contactMethod}\n`;
+    if (requirement && requirement.trim() !== '') {
+      text += `📝 *Requirement Details:*\n${requirement}\n`;
+    }
+    text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `_Sent from website enquiry form_`;
+    
+    const waUrl = `https://wa.me/${DBA_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    
+    // Close modal if open
+    const modal = form.closest('.modal-overlay');
+    if (modal) {
+      modal.classList.remove('active');
+    }
+    
+    // Show beautiful WhatsApp connection overlay
+    showWhatsAppSuccessAnimation(fullName);
+    
+    // Open WhatsApp after brief animation
+    setTimeout(() => {
+      window.open(waUrl, '_blank') || (window.location.href = waUrl);
+    }, 700);
+    
+    form.reset();
   });
 });
 
-// Detect return from FormSubmit submission
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.location.search.includes('submitted=true')) {
-    setTimeout(() => {
-      showSuccessAnimation();
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }, 400);
-  }
-});
-
-function showSuccessAnimation() {
+function showWhatsAppSuccessAnimation(clientName) {
   const overlay = document.createElement('div');
   overlay.style.cssText = `
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
     z-index: 999999; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    align-items: center; justify-content: center; padding: 25px;
     opacity: 0; transition: opacity 0.5s ease;
   `;
   
   overlay.innerHTML = `
-    <div style="background: var(--whatsapp-green, #25D366); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; transform: scale(0); transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);">
-      <i class="fa-solid fa-check" style="color: white; font-size: 50px;"></i>
+    <div style="background: #25D366; width: 95px; height: 95px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; transform: scale(0); transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.35);">
+      <i class="fa-brands fa-whatsapp" style="color: white; font-size: 55px;"></i>
     </div>
-    <h2 style="color: var(--text-primary, #1A2530); margin:0; font-family: var(--font-heading), sans-serif; font-size: 2.5rem; text-align: center;">Message Sent!</h2>
-    <p style="color: var(--text-muted, #5C6B7A); margin-top: 15px; font-size: 1.2rem; text-align: center;">Thank you for reaching out.<br>We will get back to you shortly.</p>
+    <h2 style="color: var(--text-primary, #1A2530); margin:0 0 12px; font-family: var(--font-heading), sans-serif; font-size: 2.3rem; text-align: center;">Connecting to WhatsApp...</h2>
+    <p style="color: var(--text-muted, #5C6B7A); font-size: 1.15rem; text-align: center; max-width: 520px; line-height: 1.6; margin: 0 0 20px;">
+      Thank you, <strong>${clientName}</strong>! Opening WhatsApp with <strong>Dilip Borge Associates</strong> (+91 98985 63718) with all your details pre-filled.
+    </p>
+    <div style="display:flex; align-items:center; gap:10px; color:var(--text-primary); font-weight:600; font-size:0.95rem;">
+      <i class="fa-solid fa-spinner fa-spin text-gold"></i> Opening WhatsApp now...
+    </div>
   `;
   
   document.body.appendChild(overlay);
   
-  // Trigger animations
   requestAnimationFrame(() => {
     overlay.style.opacity = '1';
     overlay.querySelector('div').style.transform = 'scale(1)';
   });
   
-  // Auto-remove after 3.5 seconds
   setTimeout(() => {
     overlay.style.opacity = '0';
     setTimeout(() => overlay.remove(), 500);
-  }, 3500);
+  }, 4000);
 }

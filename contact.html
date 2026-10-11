@@ -132,13 +132,7 @@
         <div class="glass-card fade-up stagger-2" style="border-top: 4px solid var(--gold);">
           <h3 style="margin-bottom:30px;">Send a Secure Message</h3>
           
-          <form action="https://formsubmit.co/dilipborge@yahoo.co.in" method="POST">
-            <!-- FormSubmit Configuration -->
-            <input type="hidden" name="_subject" value="New Client Consultation Enquiry - Dilip Borge Associates">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://dilipunclewebsite.vercel.app/contact.html?submitted=true">
-            <input type="text" name="_honey" style="display:none;">
-
+          <form id="contactForm">
             <div class="form-group">
               <input type="text" name="Full Name" class="form-control" required minlength="3" maxlength="50" pattern="[a-zA-Z\s.\-']{3,50}" placeholder="Full Name">
               <span class="error-msg"></span>
@@ -237,8 +231,8 @@
               <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
             </p>
             
-            <button type="submit" class="btn btn-gold" style="width:100%;">
-              Send Message for Free Consultation
+            <button type="submit" class="btn btn-gold" style="width:100%; display:flex; align-items:center; justify-content:center; gap:10px; font-size:1.1rem; padding:15px 25px; cursor:pointer;">
+              <i class="fa-brands fa-whatsapp" style="font-size:1.5rem; color:#25D366;"></i> Send Enquiry via WhatsApp
             </button>
           </form>
         </div>
